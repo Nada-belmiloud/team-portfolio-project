@@ -27,5 +27,3 @@ This repository contains the static team portfolio website for our Software Engi
 
 (Will be added after final submission)
 
-
-
