@@ -1,32 +1,32 @@
-\# Team Portfolio Project
+# Team Portfolio Project
 
 
 
-\## Team Members
+## Team Members
 
-\- Nada BELMILOUD — @Nada-belmiloud
+- Nada BELMILOUD — @Nada-belmiloud
 
-\- \[Member 2 Name] — @\[GitHub Username]
+- \[Member 2 Name] — @\[GitHub Username]
 
-\- \[Member 3 Name] — @\[GitHub Username]
+- \[Member 3 Name] — @\[GitHub Username]
 
-\- \[Member 4 Name] — @\[GitHub Username]
+- \[Member 4 Name] — @\[GitHub Username]
 
 
 
-\## Repository
+## Repository
 
 This repository contains the static team portfolio website for our Software Engineering project.
 
 
 
-\## Live Site
+## Live Site
 
 (Will be added after deployment)
 
 
 
-\## Retrospective
+## Retrospective
 
 (Will be added after final submission)
 
