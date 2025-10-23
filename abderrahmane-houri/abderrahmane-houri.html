@@ -1118,5 +1118,256 @@
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+    // Skill Tree Data
+    const skills = [
+        { id: 'js', name: 'JavaScript', icon: '📜', x: 50, y: 15, cost: 1, level: 0, maxLevel: 3, desc: 'Ancient scrolls of dynamic scripting', requires: [] },
+        { id: 'html', name: 'HTML', icon: '🏰', x: 25, y: 30, cost: 1, level: 0, maxLevel: 3, desc: 'Foundation stones of the web realm', requires: ['js'] },
+        { id: 'css', name: 'CSS', icon: '✨', x: 75, y: 30, cost: 1, level: 0, maxLevel: 3, desc: 'Enchantments of beauty and style', requires: ['js'] },
+        { id: 'node', name: 'Node.js', icon: '🟢', x: 50, y: 45, cost: 2, level: 0, maxLevel: 3, desc: 'Server-side sorcery', requires: ['html', 'css'] },
+        { id: 'python', name: 'Python', icon: '🐍', x: 20, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Serpent wisdom of computation', requires: ['node'] },
+        { id: 'express', name: 'Express', icon: '🚂', x: 50, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Swift pathways to APIs', requires: ['node'] },
+        { id: 'mongo', name: 'MongoDB', icon: '🍃', x: 80, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Ancient database scrolls', requires: ['node'] },
+        { id: 'cpp', name: 'C++', icon: '⚡', x: 35, y: 75, cost: 3, level: 0, maxLevel: 3, desc: 'Lightning-fast system magic', requires: ['python'] },
+        { id: 'lua', name: 'Lua', icon: '🌙', x: 65, y: 75, cost: 3, level: 0, maxLevel: 3, desc: 'Moonlight scripting arts', requires: ['express'] },
+        { id: 'flutter', name: 'Flutter', icon: '🦋', x: 50, y: 90, cost: 3, level: 0, maxLevel: 3, desc: 'Cross-realm mobile mastery', requires: ['cpp', 'lua'] }
+    ];
+
+    let availablePoints = 30;
+
+    // Generate magical particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+    }
+
+    // Create Skill Tree
+    function createSkillTree() {
+        const container = document.getElementById('skillTree');
+        const svg = document.getElementById('skillTreeSvg');
+
+        // Draw connections
+        skills.forEach(skill => {
+            skill.requires.forEach(reqId => {
+                const reqSkill = skills.find(s => s.id === reqId);
+                if (reqSkill) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', `${reqSkill.x}%`);
+                    line.setAttribute('y1', `${reqSkill.y}%`);
+                    line.setAttribute('x2', `${skill.x}%`);
+                    line.setAttribute('y2', `${skill.y}%`);
+                    line.setAttribute('data-from', reqId);
+                    line.setAttribute('data-to', skill.id);
+                    svg.appendChild(line);
+                }
+            });
+        });
+
+        // Create skill nodes
+        skills.forEach((skill, index) => {
+            const node = document.createElement('div');
+            node.className = 'skill-node locked';
+            node.style.left = `calc(${skill.x}% - 60px)`;
+            node.style.top = `calc(${skill.y}% - 60px)`;
+            node.setAttribute('data-skill', skill.id);
+
+            node.innerHTML = `
+                <div class="skill-icon">${skill.icon}</div>
+                <div class="skill-name">${skill.name}</div>
+                ${skill.level > 0 ? `<div class="skill-level">${skill.level}</div>` : ''}
+            `;
+
+            node.addEventListener('mouseenter', (e) => showTooltip(skill, e));
+            node.addEventListener('mouseleave', hideTooltip);
+            node.addEventListener('click', () => unlockSkill(skill.id));
+
+            container.appendChild(node);
+
+            setTimeout(() => {
+                node.classList.add('visible');
+            }, index * 100);
+        });
+
+        updateSkillTree();
+    }
+
+    function canUnlock(skill) {
+        if (skill.level >= skill.maxLevel) return false;
+        if (availablePoints < skill.cost) return false;
+        if (skill.requires.length === 0) return true;
+        return skill.requires.every(reqId => {
+            const reqSkill = skills.find(s => s.id === reqId);
+            return reqSkill.level > 0;
+        });
+    }
+
+    function unlockSkill(skillId) {
+        const skill = skills.find(s => s.id === skillId);
+        if (!canUnlock(skill)) return;
+
+        skill.level++;
+        availablePoints -= skill.cost;
+
+        document.getElementById('skillPoints').textContent = availablePoints;
+        updateSkillTree();
+
+        const node = document.querySelector(`[data-skill="${skillId}"]`);
+        gsap.to(node, {
+            scale: 1.3,
+            duration: 0.3,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut"
+        });
+
+        createBurst(node);
+    }
+
+    function updateSkillTree() {
+        skills.forEach(skill => {
+            const node = document.querySelector(`[data-skill="${skill.id}"]`);
+
+            if (skill.level > 0) {
+                node.classList.remove('locked');
+                node.classList.add('unlocked');
+
+                let levelEl = node.querySelector('.skill-level');
+                if (!levelEl) {
+                    levelEl = document.createElement('div');
+                    levelEl.className = 'skill-level';
+                    node.appendChild(levelEl);
+                }
+                levelEl.textContent = skill.level;
+            } else if (canUnlock(skill)) {
+                node.classList.remove('locked');
+            } else {
+                node.classList.add('locked');
+            }
+
+            skill.requires.forEach(reqId => {
+                const line = document.querySelector(`line[data-from="${reqId}"][data-to="${skill.id}"]`);
+                const reqSkill = skills.find(s => s.id === reqId);
+                if (line && reqSkill.level > 0) {
+                    line.classList.add('active');
+                }
+            });
+        });
+    }
+
+    function showTooltip(skill, event) {
+        const tooltip = document.getElementById('tooltip');
+        const canBuy = canUnlock(skill);
+        const node = event.currentTarget;
+        const rect = node.getBoundingClientRect();
+
+        let statusText = '';
+        if (skill.level >= skill.maxLevel) {
+            statusText = '<p style="color: var(--gold);">⭐ MASTERED ⭐</p>';
+        } else if (canBuy) {
+            statusText = `<button class="unlock-button" onclick="unlockSkill('${skill.id}')">✨ Unlock (${skill.cost} points)</button>`;
+        } else if (availablePoints < skill.cost) {
+            statusText = '<p style="color: #ff6b6b;">Not enough skill points</p>';
+        } else {
+            const required = skill.requires.map(id => skills.find(s => s.id === id).name).join(', ');
+            statusText = `<p style="color: #ff6b6b;">Requires: ${required}</p>`;
+        }
+
+        tooltip.innerHTML = `
+            <h4>${skill.icon} ${skill.name}</h4>
+            <p>${skill.desc}</p>
+            <p style="margin-top: 8px; color: var(--cyan);">Level: ${skill.level}/${skill.maxLevel}</p>
+            ${statusText}
+        `;
+
+        tooltip.style.left = rect.left + rect.width / 2 - 100 + 'px';
+        tooltip.style.top = rect.top - 10 + 'px';
+        tooltip.style.transform = 'translateY(-100%)';
+        tooltip.classList.add('show');
+    }
+
+    function hideTooltip() {
+        document.getElementById('tooltip').classList.remove('show');
+    }
+
+    function createBurst(node) {
+        const rect = node.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = centerX + 'px';
+            particle.style.top = centerY + 'px';
+            particle.style.width = '8px';
+            particle.style.height = '8px';
+            particle.style.background = 'var(--gold)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.boxShadow = '0 0 10px var(--gold)';
+            document.body.appendChild(particle);
+
+            const angle = (i / 12) * Math.PI * 2;
+            const distance = 100;
+            const endX = centerX + Math.cos(angle) * distance;
+            const endY = centerY + Math.sin(angle) * distance;
+
+            gsap.to(particle, {
+                left: endX,
+                top: endY,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                onComplete: () => particle.remove()
+            });
+        }
+    }
+
+    createSkillTree();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-title, .project-card, .social-icon').forEach(el => {
+        observer.observe(el);
+    });
+
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.style.transitionDelay = (index * 0.15) + 's';
+    });
+
+    document.querySelectorAll('.social-icon').forEach((icon, index) => {
+        icon.style.transitionDelay = (index * 0.2) + 's';
+    });
+</script>
+
 </body>
 </html>
