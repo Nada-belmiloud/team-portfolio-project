@@ -4,13 +4,10 @@
 
 ## Team Members
 
-- Nada BELMILOUD — @Nada-belmiloud
-
-- \[Member 2 Name] — @\[GitHub Username]
-
-- \[Member 3 Name] — @\[GitHub Username]
-
-- \[Member 4 Name] — @\[GitHub Username]
+Nada BELMILOUD — @Nada-belmiloud
+Malak MELIANI — @username
+Zineb BOUAZIZ — @
+Abderrahmane HOURRI _ @
 
 
 
