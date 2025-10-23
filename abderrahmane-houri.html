@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houri Abderrahmane - Arcane Developer Portfolio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #8b7220;
+            --purple: #6b46c1;
+            --blue: #4169e1;
+            --cyan: #00bcd4;
+            --dark-bg: #0a0612;
+            --card-bg: rgba(20, 10, 30, 0.8);
+        }
+
+        body {
+            font-family: 'Spectral', serif;
+            background: var(--dark-bg);
+            color: #e8e8e8;
+            overflow-x: hidden;
+        }
+
+        /* Magical Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(107, 70, 193, 0.2) 0%, transparent 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, #ffd700 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            color: #c4b5a5;
+            margin-bottom: 2.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(139, 114, 32, 0.2) 100%);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4) 0%, rgba(139, 114, 32, 0.4) 100%);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6), inset 0 0 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Player Stats Section */
+        #player-stats {
+            background: radial-gradient(ellipse at center, rgba(107, 70, 193, 0.15) 0%, transparent 70%);
+            min-height: auto;
+        }
+
+        .player-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, rgba(20, 10, 30, 0.95) 0%, rgba(30, 15, 45, 0.9) 100%);
+            border: 3px solid var(--gold);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .player-avatar {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        .avatar-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            border: 4px solid var(--gold);
+            border-radius: 50%;
+            padding: 10px;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.3), rgba(212, 175, 55, 0.3));
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .level-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            border: 3px solid var(--dark-bg);
+            border-radius: 30px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .level-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        .level-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+            text-transform: uppercase;
+        }
+
+        .player-info {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .player-name {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .player-class {
+            font-size: 1.2rem;
+            color: #c4b5a5;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .player-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+        }
+
+        .stat-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #c4b5a5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stats-panel {
+            background: linear-gradient(135deg, rgba(20, 10, 30, 0.95) 0%, rgba(30, 15, 45, 0.9) 100%);
+            border: 3px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .panel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .soft-skills {
+            margin-bottom: 50px;
+        }
+
+        .skill-bar-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-bar-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #c4b5a5;
+        }
+
+        .skill-bar-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .skill-bar-track {
+            height: 25px;
+            background: rgba(10, 6, 18, 0.8);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #ffd700, var(--gold));
+            border-radius: 13px;
+            position: relative;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: width 1.5s ease-out 0.3s;
+        }
+
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            to { left: 200%; }
+        }
+
+        .tech-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-skill-item {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-skill-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .tech-skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tech-skill-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #c4b5a5;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-skill-level {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto 0;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        /* Skills Section - Skill Tree */
+        .skills-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .skill-points {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .points-display {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(139, 114, 32, 0.2) 100%);
+            border: 2px solid var(--gold);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .skill-tree-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 800px;
+        }
+
+        .skill-tree-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .skill-tree-svg line {
+            stroke: rgba(212, 175, 55, 0.3);
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tree-svg line.active {
+            stroke: var(--gold);
+            stroke-width: 3;
+            filter: drop-shadow(0 0 5px var(--gold));
+        }
+
+        .skill-node {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(20, 10, 30, 0.95) 0%, rgba(30, 15, 45, 0.9) 100%);
+            border: 3px solid rgba(212, 175, 55, 0.4);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .skill-node.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .skill-node.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        .skill-node.unlocked {
+            border-color: var(--gold);
+            box-shadow: 0 5px 30px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .skill-node.unlocked .skill-icon {
+            filter: none;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px var(--gold); }
+            50% { text-shadow: 0 0 20px var(--gold), 0 0 30px var(--gold); }
+        }
+
+        .skill-node:hover:not(.locked) {
+            transform: scale(1.15);
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            filter: grayscale(0.5);
+            transition: filter 0.3s ease;
+        }
+
+        .skill-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #c4b5a5;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skill-node.unlocked .skill-name {
+            color: var(--gold);
+        }
+
+        .skill-level {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            border: 2px solid var(--dark-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark-bg);
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Skill Tooltip */
+        .skill-tooltip {
+            position: absolute;
+            background: rgba(10, 6, 18, 0.98);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 15px 20px;
+            pointer-events: none;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            min-width: 200px;
+        }
+
+        .skill-tooltip.show {
+            opacity: 1;
+        }
+
+        .skill-tooltip h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .skill-tooltip p {
+            color: #c4b5a5;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .unlock-button {
+            margin-top: 10px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 114, 32, 0.3));
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .unlock-button:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.5), rgba(139, 114, 32, 0.5));
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Projects Section */
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(20, 10, 30, 0.9) 0%, rgba(30, 15, 45, 0.8) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .project-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .project-card p {
+            color: #c4b5a5;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(107, 70, 193, 0.2) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            color: var(--gold);
+            font-size: 2rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .social-icon.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.4) 0%, rgba(107, 70, 193, 0.4) 100%);
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-tree-container {
+                min-height: 1200px;
+            }
+
+            .skill-node {
+                width: 100px;
+                height: 100px;
+            }
+
+            .skill-icon {
+                font-size: 2rem;
+            }
+
+            .skill-name {
+                font-size: 0.7rem;
+            }
+
+            .player-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+
+</head>
+<body>
+<!-- Magical Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Houri Abderrahmane</h1>
+        <p>Full Stack & Game Developer</p>
+        <a href="#projects" class="cta-button">⚔️ Explore My Work</a>
+    </div>
+</section>
+
+<!-- Player Stats Section -->
+<section id="player-stats">
+    <h2 class="section-title">Character Sheet</h2>
+    <div class="player-container">
+        <div class="player-card">
+            <div class="player-avatar">
+                <div class="avatar-frame">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Developer&backgroundColor=6b46c1" alt="Player Avatar" id="playerAvatar">
+                    <div class="level-badge">
+                        <span class="level-number">99</span>
+                        <span class="level-text">Master</span>
+                    </div>
+                </div>
+            </div>
+            <div class="player-info">
+                <h3 class="player-name">Houri Abderrahmane</h3>
+                <p class="player-class">🎮 Legendary Developer</p>
+                <div class="player-stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-icon">⚔️</span>
+                        <span class="stat-label">Attack</span>
+                        <span class="stat-value">850</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🛡️</span>
+                        <span class="stat-label">Defense</span>
+                        <span class="stat-value">720</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">✨</span>
+                        <span class="stat-label">Magic</span>
+                        <span class="stat-value">950</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">💨</span>
+                        <span class="stat-label">Speed</span>
+                        <span class="stat-value">680</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <h3 class="panel-title">⚔️ Combat Skills (Soft Skills)</h3>
+            <div class="soft-skills">
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🗣️ Communication</span>
+                        <span class="skill-bar-value">92%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 92%" data-width="92"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">👥 Teamwork</span>
+                        <span class="skill-bar-value">88%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 88%" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🧩 Problem Solving</span>
+                        <span class="skill-bar-value">95%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 95%" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🎯 Leadership</span>
+                        <span class="skill-bar-value">85%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 85%" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">⏱️ Time Management</span>
+                        <span class="skill-bar-value">90%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 90%" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🔄 Adaptability</span>
+                        <span class="skill-bar-value">93%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 93%" data-width="93"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="panel-title">📊 Technical Mastery</h3>
+            <div class="tech-skills-grid" id="techSkillsGrid">
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="tech-skill-name">JavaScript</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-flutter-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Flutter</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-laravel-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Laravel</div>
+                    <div class="tech-skill-level">40</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-dart-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Dart</div>
+                    <div class="tech-skill-level">70</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="tech-skill-name">HTML</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="tech-skill-name">CSS</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <div class="tech-skill-name">Node.js</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-skill-name">Python</div>
+                    <div class="tech-skill-level">92</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fas devicon-express-original"></i>
+                    </div>
+                    <div class="tech-skill-name">Express</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fas devicon-mongodb-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">MongoDB</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-cplusplus-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">C++</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-lua-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Lua</div>
+                    <div class="tech-skill-level">85</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <div class="tech-skill-name">PHP</div>
+                    <div class="tech-skill-level">20</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <div class="tech-skill-name">Git</div>
+                    <div class="tech-skill-level">45</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <div class="tech-skill-name">Java</div>
+                    <div class="tech-skill-level">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2 class="section-title">Arcane Skill Tree</h2>
+    <div class="skills-header">
+        <div class="skill-points">
+            <span>Available Skill Points:</span>
+            <div class="points-display" id="skillPoints">30</div>
+        </div>
+    </div>
+    <div class="skill-tree-container" id="skillTree">
+        <svg class="skill-tree-svg" id="skillTreeSvg"></svg>
+    </div>
+</section>
+
+<!-- Skill Tooltip -->
+<div class="skill-tooltip" id="tooltip"></div>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2 class="section-title">Legendary Quests</h2>
+    <div class="projects-container">
+        <div class="project-card">
+            <h3>🏦 MINIBANK</h3>
+            <p>A comprehensive banking simulation system with secure transaction processing. Experience the mystical art of financial management with enchanted algorithms.</p>
+        </div>
+        <div class="project-card">
+            <h3>🤖 AI Project</h3>
+            <p>Advanced artificial intelligence system leveraging machine learning algorithms. Harness the power of neural networks to solve complex computational challenges.</p>
+        </div>
+        <div class="project-card">
+            <h3>🛒 MarketHeaven</h3>
+            <p>Celestial marketplace platform connecting buyers and sellers in an enchanted digital bazaar. Experience seamless e-commerce with mystical user experience.</p>
+        </div>
+        <div class="project-card">
+            <h3>✅ Task Manager</h3>
+            <p>Powerful productivity tool for organizing quests and managing daily adventures. Track your progress through an intuitive interface blessed with organizational magic.</p>
+        </div>
+        <div class="project-card">
+            <h3>🗺️ Dynamic Country-City Loader</h3>
+            <p>Mystical web interface with intelligent cascading dropdowns. Navigate through kingdoms and provinces with sorcerous automation.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">Send a Raven</h2>
+    <div class="contact-container">
+        <p style="font-size: 1.3rem; color: #c4b5a5; margin-bottom: 20px;">Seek audience with the developer through these enchanted portals</p>
+        <div class="social-links">
+            <a href="https://github.com/Abderrahamane" class="social-icon" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:abderrahmane.houri@ensia.edu.dz" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com" class="social-icon" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+    // Skill Tree Data
+    const skills = [
+        { id: 'js', name: 'JavaScript', icon: '📜', x: 50, y: 15, cost: 1, level: 0, maxLevel: 3, desc: 'Ancient scrolls of dynamic scripting', requires: [] },
+        { id: 'html', name: 'HTML', icon: '🏰', x: 25, y: 30, cost: 1, level: 0, maxLevel: 3, desc: 'Foundation stones of the web realm', requires: ['js'] },
+        { id: 'css', name: 'CSS', icon: '✨', x: 75, y: 30, cost: 1, level: 0, maxLevel: 3, desc: 'Enchantments of beauty and style', requires: ['js'] },
+        { id: 'node', name: 'Node.js', icon: '🟢', x: 50, y: 45, cost: 2, level: 0, maxLevel: 3, desc: 'Server-side sorcery', requires: ['html', 'css'] },
+        { id: 'python', name: 'Python', icon: '🐍', x: 20, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Serpent wisdom of computation', requires: ['node'] },
+        { id: 'express', name: 'Express', icon: '🚂', x: 50, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Swift pathways to APIs', requires: ['node'] },
+        { id: 'mongo', name: 'MongoDB', icon: '🍃', x: 80, y: 60, cost: 2, level: 0, maxLevel: 3, desc: 'Ancient database scrolls', requires: ['node'] },
+        { id: 'cpp', name: 'C++', icon: '⚡', x: 35, y: 75, cost: 3, level: 0, maxLevel: 3, desc: 'Lightning-fast system magic', requires: ['python'] },
+        { id: 'lua', name: 'Lua', icon: '🌙', x: 65, y: 75, cost: 3, level: 0, maxLevel: 3, desc: 'Moonlight scripting arts', requires: ['express'] },
+        { id: 'flutter', name: 'Flutter', icon: '🦋', x: 50, y: 90, cost: 3, level: 0, maxLevel: 3, desc: 'Cross-realm mobile mastery', requires: ['cpp', 'lua'] }
+    ];
+
+    let availablePoints = 30;
+
+    // Generate magical particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+    }
+
+    // Create Skill Tree
+    function createSkillTree() {
+        const container = document.getElementById('skillTree');
+        const svg = document.getElementById('skillTreeSvg');
+
+        // Draw connections
+        skills.forEach(skill => {
+            skill.requires.forEach(reqId => {
+                const reqSkill = skills.find(s => s.id === reqId);
+                if (reqSkill) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', `${reqSkill.x}%`);
+                    line.setAttribute('y1', `${reqSkill.y}%`);
+                    line.setAttribute('x2', `${skill.x}%`);
+                    line.setAttribute('y2', `${skill.y}%`);
+                    line.setAttribute('data-from', reqId);
+                    line.setAttribute('data-to', skill.id);
+                    svg.appendChild(line);
+                }
+            });
+        });
+
+        // Create skill nodes
+        skills.forEach((skill, index) => {
+            const node = document.createElement('div');
+            node.className = 'skill-node locked';
+            node.style.left = `calc(${skill.x}% - 60px)`;
+            node.style.top = `calc(${skill.y}% - 60px)`;
+            node.setAttribute('data-skill', skill.id);
+
+            node.innerHTML = `
+                <div class="skill-icon">${skill.icon}</div>
+                <div class="skill-name">${skill.name}</div>
+                ${skill.level > 0 ? `<div class="skill-level">${skill.level}</div>` : ''}
+            `;
+
+            node.addEventListener('mouseenter', (e) => showTooltip(skill, e));
+            node.addEventListener('mouseleave', hideTooltip);
+            node.addEventListener('click', () => unlockSkill(skill.id));
+
+            container.appendChild(node);
+
+            setTimeout(() => {
+                node.classList.add('visible');
+            }, index * 100);
+        });
+
+        updateSkillTree();
+    }
+
+    function canUnlock(skill) {
+        if (skill.level >= skill.maxLevel) return false;
+        if (availablePoints < skill.cost) return false;
+        if (skill.requires.length === 0) return true;
+        return skill.requires.every(reqId => {
+            const reqSkill = skills.find(s => s.id === reqId);
+            return reqSkill.level > 0;
+        });
+    }
+
+    function unlockSkill(skillId) {
+        const skill = skills.find(s => s.id === skillId);
+        if (!canUnlock(skill)) return;
+
+        skill.level++;
+        availablePoints -= skill.cost;
+
+        document.getElementById('skillPoints').textContent = availablePoints;
+        updateSkillTree();
+
+        const node = document.querySelector(`[data-skill="${skillId}"]`);
+        gsap.to(node, {
+            scale: 1.3,
+            duration: 0.3,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut"
+        });
+
+        createBurst(node);
+    }
+
+    function updateSkillTree() {
+        skills.forEach(skill => {
+            const node = document.querySelector(`[data-skill="${skill.id}"]`);
+
+            if (skill.level > 0) {
+                node.classList.remove('locked');
+                node.classList.add('unlocked');
+
+                let levelEl = node.querySelector('.skill-level');
+                if (!levelEl) {
+                    levelEl = document.createElement('div');
+                    levelEl.className = 'skill-level';
+                    node.appendChild(levelEl);
+                }
+                levelEl.textContent = skill.level;
+            } else if (canUnlock(skill)) {
+                node.classList.remove('locked');
+            } else {
+                node.classList.add('locked');
+            }
+
+            skill.requires.forEach(reqId => {
+                const line = document.querySelector(`line[data-from="${reqId}"][data-to="${skill.id}"]`);
+                const reqSkill = skills.find(s => s.id === reqId);
+                if (line && reqSkill.level > 0) {
+                    line.classList.add('active');
+                }
+            });
+        });
+    }
+
+    function showTooltip(skill, event) {
+        const tooltip = document.getElementById('tooltip');
+        const canBuy = canUnlock(skill);
+        const node = event.currentTarget;
+        const rect = node.getBoundingClientRect();
+
+        let statusText = '';
+        if (skill.level >= skill.maxLevel) {
+            statusText = '<p style="color: var(--gold);">⭐ MASTERED ⭐</p>';
+        } else if (canBuy) {
+            statusText = `<button class="unlock-button" onclick="unlockSkill('${skill.id}')">✨ Unlock (${skill.cost} points)</button>`;
+        } else if (availablePoints < skill.cost) {
+            statusText = '<p style="color: #ff6b6b;">Not enough skill points</p>';
+        } else {
+            const required = skill.requires.map(id => skills.find(s => s.id === id).name).join(', ');
+            statusText = `<p style="color: #ff6b6b;">Requires: ${required}</p>`;
+        }
+
+        tooltip.innerHTML = `
+            <h4>${skill.icon} ${skill.name}</h4>
+            <p>${skill.desc}</p>
+            <p style="margin-top: 8px; color: var(--cyan);">Level: ${skill.level}/${skill.maxLevel}</p>
+            ${statusText}
+        `;
+
+        tooltip.style.left = rect.left + rect.width / 2 - 100 + 'px';
+        tooltip.style.top = rect.top - 10 + 'px';
+        tooltip.style.transform = 'translateY(-100%)';
+        tooltip.classList.add('show');
+    }
+
+    function hideTooltip() {
+        document.getElementById('tooltip').classList.remove('show');
+    }
+
+    function createBurst(node) {
+        const rect = node.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = centerX + 'px';
+            particle.style.top = centerY + 'px';
+            particle.style.width = '8px';
+            particle.style.height = '8px';
+            particle.style.background = 'var(--gold)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.boxShadow = '0 0 10px var(--gold)';
+            document.body.appendChild(particle);
+
+            const angle = (i / 12) * Math.PI * 2;
+            const distance = 100;
+            const endX = centerX + Math.cos(angle) * distance;
+            const endY = centerY + Math.sin(angle) * distance;
+
+            gsap.to(particle, {
+                left: endX,
+                top: endY,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                onComplete: () => particle.remove()
+            });
+        }
+    }
+
+    createSkillTree();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-title, .project-card, .social-icon').forEach(el => {
+        observer.observe(el);
+    });
+
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.style.transitionDelay = (index * 0.15) + 's';
+    });
+
+    document.querySelectorAll('.social-icon').forEach((icon, index) => {
+        icon.style.transitionDelay = (index * 0.2) + 's';
+    });
+</script>
+
+</body>
+</html>

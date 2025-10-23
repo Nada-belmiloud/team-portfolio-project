@@ -1,32 +1,29 @@
-\# Team Portfolio Project
+# Team Portfolio Project
 
 
 
-\## Team Members
+## Team Members
 
-\- Nada BELMILOUD — @Nada-belmiloud
+- Nada BELMILOUD — @Nada-belmiloud
+- Malak MELIANI — @username
+- Zineb BOUAZIZ — @
+- Abderrahmane HOURRI _ @
 
-\- Nada BELMILOUD — @Nada-belmiloud
 
-\- Malak MELIANI — @username
 
-\- Zineb BOUAZIZ — @
-
-Abderrahmane HOURRI \_ @
-
-\## Repository
+## Repository
 
 This repository contains the static team portfolio website for our Software Engineering project.
 
 
 
-\## Live Site
+## Live Site
 
 (Will be added after deployment)
 
 
 
-\## Retrospective
+## Retrospective
 
 (Will be added after final submission)
 
