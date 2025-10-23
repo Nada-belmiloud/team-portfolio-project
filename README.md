@@ -4,10 +4,10 @@
 
 ## Team Members
 
-Nada BELMILOUD — @Nada-belmiloud
-Malak MELIANI — @username
-Zineb BOUAZIZ — @
-Abderrahmane HOURRI _ @
+- Nada BELMILOUD — @Nada-belmiloud
+- Malak MELIANI — @username
+- Zineb BOUAZIZ — @
+- Abderrahmane HOURRI _ @
 
 
 
