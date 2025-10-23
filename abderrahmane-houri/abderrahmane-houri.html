@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houri Abderrahmane - Arcane Developer Portfolio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+</head>
+<body>
+<!-- Magical Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Houri Abderrahmane</h1>
+        <p>Full Stack & Game Developer</p>
+        <a href="#projects" class="cta-button">⚔️ Explore My Work</a>
+    </div>
+</section>
+
+<!-- Player Stats Section -->
+<section id="player-stats">
+    <h2 class="section-title">Character Sheet</h2>
+    <div class="player-container">
+        <div class="player-card">
+            <div class="player-avatar">
+                <div class="avatar-frame">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Developer&backgroundColor=6b46c1" alt="Player Avatar" id="playerAvatar">
+                    <div class="level-badge">
+                        <span class="level-number">99</span>
+                        <span class="level-text">Master</span>
+                    </div>
+                </div>
+            </div>
+            <div class="player-info">
+                <h3 class="player-name">Houri Abderrahmane</h3>
+                <p class="player-class">🎮 Legendary Developer</p>
+                <div class="player-stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-icon">⚔️</span>
+                        <span class="stat-label">Attack</span>
+                        <span class="stat-value">850</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🛡️</span>
+                        <span class="stat-label">Defense</span>
+                        <span class="stat-value">720</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">✨</span>
+                        <span class="stat-label">Magic</span>
+                        <span class="stat-value">950</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">💨</span>
+                        <span class="stat-label">Speed</span>
+                        <span class="stat-value">680</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <h3 class="panel-title">⚔️ Combat Skills (Soft Skills)</h3>
+            <div class="soft-skills">
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🗣️ Communication</span>
+                        <span class="skill-bar-value">92%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 92%" data-width="92"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">👥 Teamwork</span>
+                        <span class="skill-bar-value">88%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 88%" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🧩 Problem Solving</span>
+                        <span class="skill-bar-value">95%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 95%" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🎯 Leadership</span>
+                        <span class="skill-bar-value">85%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 85%" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">⏱️ Time Management</span>
+                        <span class="skill-bar-value">90%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 90%" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-item">
+                    <div class="skill-bar-header">
+                        <span class="skill-bar-name">🔄 Adaptability</span>
+                        <span class="skill-bar-value">93%</span>
+                    </div>
+                    <div class="skill-bar-track">
+                        <div class="skill-bar-fill" style="width: 93%" data-width="93"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="panel-title">📊 Technical Mastery</h3>
+            <div class="tech-skills-grid" id="techSkillsGrid">
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="tech-skill-name">JavaScript</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-flutter-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Flutter</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-laravel-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Laravel</div>
+                    <div class="tech-skill-level">40</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-dart-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Dart</div>
+                    <div class="tech-skill-level">70</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="tech-skill-name">HTML</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="tech-skill-name">CSS</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <div class="tech-skill-name">Node.js</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-skill-name">Python</div>
+                    <div class="tech-skill-level">92</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fas devicon-express-original"></i>
+                    </div>
+                    <div class="tech-skill-name">Express</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fas devicon-mongodb-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">MongoDB</div>
+                    <div class="tech-skill-level">75</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-cplusplus-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">C++</div>
+                    <div class="tech-skill-level">65</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab devicon-lua-plain"></i>
+                    </div>
+                    <div class="tech-skill-name">Lua</div>
+                    <div class="tech-skill-level">85</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <div class="tech-skill-name">PHP</div>
+                    <div class="tech-skill-level">20</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <div class="tech-skill-name">Git</div>
+                    <div class="tech-skill-level">45</div>
+                </div>
+                <div class="tech-skill-item">
+                    <div class="tech-skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <div class="tech-skill-name">Java</div>
+                    <div class="tech-skill-level">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2 class="section-title">Arcane Skill Tree</h2>
+    <div class="skills-header">
+        <div class="skill-points">
+            <span>Available Skill Points:</span>
+            <div class="points-display" id="skillPoints">30</div>
+        </div>
+    </div>
+    <div class="skill-tree-container" id="skillTree">
+        <svg class="skill-tree-svg" id="skillTreeSvg"></svg>
+    </div>
+</section>
+
+<!-- Skill Tooltip -->
+<div class="skill-tooltip" id="tooltip"></div>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2 class="section-title">Legendary Quests</h2>
+    <div class="projects-container">
+        <div class="project-card">
+            <h3>🏦 MINIBANK</h3>
+            <p>A comprehensive banking simulation system with secure transaction processing. Experience the mystical art of financial management with enchanted algorithms.</p>
+        </div>
+        <div class="project-card">
+            <h3>🤖 AI Project</h3>
+            <p>Advanced artificial intelligence system leveraging machine learning algorithms. Harness the power of neural networks to solve complex computational challenges.</p>
+        </div>
+        <div class="project-card">
+            <h3>🛒 MarketHeaven</h3>
+            <p>Celestial marketplace platform connecting buyers and sellers in an enchanted digital bazaar. Experience seamless e-commerce with mystical user experience.</p>
+        </div>
+        <div class="project-card">
+            <h3>✅ Task Manager</h3>
+            <p>Powerful productivity tool for organizing quests and managing daily adventures. Track your progress through an intuitive interface blessed with organizational magic.</p>
+        </div>
+        <div class="project-card">
+            <h3>🗺️ Dynamic Country-City Loader</h3>
+            <p>Mystical web interface with intelligent cascading dropdowns. Navigate through kingdoms and provinces with sorcerous automation.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">Send a Raven</h2>
+    <div class="contact-container">
+        <p style="font-size: 1.3rem; color: #c4b5a5; margin-bottom: 20px;">Seek audience with the developer through these enchanted portals</p>
+        <div class="social-links">
+            <a href="https://github.com/Abderrahamane" class="social-icon" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:abderrahmane.houri@ensia.edu.dz" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com" class="social-icon" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</body>
+</html>
