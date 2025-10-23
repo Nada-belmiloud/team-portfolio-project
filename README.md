@@ -6,13 +6,13 @@
 
 \- Nada BELMILOUD — @Nada-belmiloud
 
-\- \[Member 2 Name] — @\[GitHub Username]
+\- Nada BELMILOUD — @Nada-belmiloud
 
-\- \[Member 3 Name] — @\[GitHub Username]
+\- Malak MELIANI — @username
 
-\- \[Member 4 Name] — @\[GitHub Username]
+\- Zineb BOUAZIZ — @
 
-
+Abderrahmane HOURRI \_ @
 
 \## Repository
 
@@ -29,6 +29,4 @@ This repository contains the static team portfolio website for our Software Engi
 \## Retrospective
 
 (Will be added after final submission)
-
-
 
